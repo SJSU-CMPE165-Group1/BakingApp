@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_baking_app/theme/colors/light_colors.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,54 +15,98 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: NavBar(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+class TestView extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _TestViewState createState() => _TestViewState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class _TestViewState extends State<TestView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Center(
+        child: Text('TEST PAGE'),
+      )
+    );
+  }
+}
+
+
+class NavBar extends StatefulWidget {
+  @override
+  _NavBarState createState() => _NavBarState();
+}
+
+class _NavBarState extends State<NavBar> {
+  int _selectedIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+
+    const List<Widget> _navbarOptions = <Widget> [
+      Text(
+        'Select Ingredients Here',
+      ),
+      Text (
+        'View recipes based off of ingredients here',
+      ),
+      Text (
+        'Search recipes here',
+      ),
+      Text (
+        'View favorite recipes here',
+      ),
+      Text (
+        'Shopping list here',
+      ),
+    ];
+
+    void _onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+    
+    return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('B-B-B-BAKING BUDDY'), //widget.title
+        backgroundColor: LightColors.kDarkYellow,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'TEST REPO: You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+        child: _navbarOptions.elementAt(_selectedIndex),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_basket),
+            title: Text('Pantry'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_dining),
+            title: Text('Recipes'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            title: Text('Search'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            title: Text('Favorites'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.format_list_bulleted),
+            title: Text('List'),
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: LightColors.kBlue,
+        onTap: _onItemTapped,
       ),
-    );
+    );;
   }
 }
