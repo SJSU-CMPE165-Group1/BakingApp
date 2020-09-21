@@ -1,5 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_baking_app/theme/colors/light_colors.dart';
+import 'package:flutter_baking_app/views/pantry.dart';
+import 'package:flutter_baking_app/views/recipes.dart';
+import 'package:flutter_baking_app/views/search.dart';
+import 'package:flutter_baking_app/views/favorites.dart';
+import 'package:flutter_baking_app/views/shopping_list.dart';
+
+class Destination {
+  const Destination(this.index, this.title, this.icon);
+  final int index;
+  final String title;
+  final IconData icon;
+}
+
+const List<Destination> destinations = <Destination> [
+  Destination(0, 'Pantry', Icons.shopping_basket),
+  Destination(1, 'Recipes', Icons.local_dining),
+  Destination(2, 'Search', Icons.search),
+  Destination(3, 'Favorites', Icons.favorite),
+  Destination(4, 'List', Icons.format_list_bulleted),
+];
 
 void main() {
   runApp(MyApp());
@@ -20,23 +40,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TestView extends StatefulWidget {
-  @override
-  _TestViewState createState() => _TestViewState();
-}
-
-class _TestViewState extends State<TestView> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('TEST PAGE'),
-      )
-    );
-  }
-}
-
-
 class NavBar extends StatefulWidget {
   @override
   _NavBarState createState() => _NavBarState();
@@ -46,25 +49,6 @@ class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-
-    const List<Widget> _navbarOptions = <Widget> [
-      Text(
-        'Select Ingredients Here',
-      ),
-      Text (
-        'View recipes based off of ingredients here',
-      ),
-      Text (
-        'Search recipes here',
-      ),
-      Text (
-        'View favorite recipes here',
-      ),
-      Text (
-        'Shopping list here',
-      ),
-    ];
-
     void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
@@ -72,37 +56,18 @@ class _NavBarState extends State<NavBar> {
     }
     
     return Scaffold(
-      appBar: AppBar(
-        title: Text('B-B-B-BAKING BUDDY'), //widget.title
-        backgroundColor: LightColors.kDarkYellow,
-      ),
-      body: Center(
-        child: _navbarOptions.elementAt(_selectedIndex),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: [PantryPage(), RecipePage(), SearchPage(), FavoritesPage(), ShoppingListPage()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            title: Text('Pantry'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_dining),
-            title: Text('Recipes'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text('Search'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            title: Text('Favorites'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.format_list_bulleted),
-            title: Text('List'),
-          ),
-        ],
+        items: destinations.map((Destination destination) {
+          return BottomNavigationBarItem(
+            icon: Icon(destination.icon),
+            title: Text(destination.title),
+          );
+        }).toList(),
         currentIndex: _selectedIndex,
         selectedItemColor: LightColors.kBlue,
         onTap: _onItemTapped,
