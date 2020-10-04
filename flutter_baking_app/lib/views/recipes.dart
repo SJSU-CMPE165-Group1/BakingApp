@@ -4,17 +4,26 @@ import 'package:flutter_baking_app/models/recipe_model.dart';
 import 'package:flutter_baking_app/controllers/recipe_api.dart';
 
 class RecipePage extends StatefulWidget {
+
+  RecipePage(Key key) :super(key: key);
+
   @override
-  _RecipePageState createState() => _RecipePageState();
+  RecipePageState createState() => RecipePageState();
 }
 
-class _RecipePageState extends State<RecipePage> {
+class RecipePageState extends State<RecipePage> {
   Future<List<Recipe>> futureRecipes;
 
   @override
   void initState() {
     super.initState();
-    futureRecipes = RecipeAPI().fetchRecipesFromIngredients("milk,eggs,flour,sugar", 1);
+    updateSearch();
+  }
+
+  void updateSearch() {
+    setState(() {
+      futureRecipes = RecipeAPI().fetchRecipesFromIngredients("sugar,eggs,flour", 1);
+    });
   }
 
   @override

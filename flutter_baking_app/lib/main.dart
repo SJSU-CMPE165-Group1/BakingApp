@@ -6,6 +6,8 @@ import 'package:flutter_baking_app/views/search.dart';
 import 'package:flutter_baking_app/views/favorites.dart';
 import 'package:flutter_baking_app/views/shopping_list.dart';
 
+GlobalKey<RecipePageState> _keyRecipePage = GlobalKey();
+
 class Destination {
   const Destination(this.index, this.title, this.icon);
   final int index;
@@ -45,20 +47,30 @@ class NavBar extends StatefulWidget {
   _NavBarState createState() => _NavBarState();
 }
 
+
 class _NavBarState extends State<NavBar> {
   int _selectedIndex = 0;
+  List<Widget> _children = [PantryPage(), RecipePage(_keyRecipePage), SearchPage(), FavoritesPage(), ShoppingListPage()];
+
   @override
   Widget build(BuildContext context) {
+
     void _onItemTapped(int index) {
       setState(() {
         _selectedIndex = index;
+
+        //we call updateSearch every time the recipes tab is pressed on the bottom bar. this is done really messily since we need to make RecipePage public and keep track of its key
+        //note that 1 is the index of RecipePage
+        if(_selectedIndex == 1) {
+          _keyRecipePage.currentState.updateSearch();
+        }
       });
     }
     
     return Scaffold(
       body: IndexedStack(
         index: _selectedIndex,
-        children: [PantryPage(), RecipePage(), SearchPage(), FavoritesPage(), ShoppingListPage()],
+        children: _children,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:developer';
 
 class RecipeAPI {
-  Future<Recipe> samplefetch() async {
+  Future<Recipe> sampleFetch() async {
     final response = await http.get('http://www.recipepuppy.com/api/?i=onions,garlic&p=1');
     print("API CALL: Sample");
     if (response.statusCode == 200) {
@@ -47,7 +47,7 @@ class RecipeAPI {
   }
 }
 /*
-To test API in chrome, copy and paste:
+To test API in chrome, copy and paste in the console:
 fetch('http://www.recipepuppy.com/api/{argument here}')
   .then(response => response.json())
   .then(json => console.log(json))
