@@ -40,6 +40,17 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
           );
         }
       ),
+      // Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //       Text(
+      //         'Shopping List',
+      //       ),
+      //
+      //     ],
+      //   ),
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           addItem(context);
@@ -51,7 +62,30 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
   }
 
   void addItem(BuildContext context){
-
+    // var alertDialog = AlertDialog(
+    //   title: Text("Add Item"),
+    //   content: TextField(
+    //     onSubmitted: (String value){
+    //       items.add(value);
+    //       print(value);
+    //     },
+    //   ),
+    //   actions: <Widget> [
+    //     new FlatButton(
+    //         child: new Text('Add'),
+    //         onPressed: (){
+    //           Navigator.of(context).pop();
+    //         },
+    //     )
+    //   ]
+    // );
+    //
+    // showDialog(
+    //   context: context,
+    //   builder: (BuildContext context){
+    //     return alertDialog;
+    //   }
+    // );
 
     showDialog(child: new Dialog(
       child: new Column(
