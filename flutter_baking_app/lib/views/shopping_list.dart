@@ -7,20 +7,78 @@ class ShoppingListPage extends StatefulWidget {
 }
 
 class _ShoppingListPageState extends State<ShoppingListPage> {
+  List<String> items = [];
+  //reads input from the user
+  var _c = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Shopping List'), //widget.title
-          backgroundColor: LightColors.kDarkYellow,
-        ),
-        backgroundColor: LightColors.kLightYellow,
-        body:
-        Center(
-          child:Text(
-            'Shopping list here',
-          ),
-        )
+      appBar: AppBar(
+        title: Text('Shopping List'), //widget.title
+        backgroundColor: LightColors.kGreen,
+      ),
+      backgroundColor: LightColors.kLightGreen,
+      body: ListView.builder(   //prints out list
+        itemCount: items.length,
+        itemBuilder:(context, index){
+          //prints shopping list
+          return ListTile(
+            title: Text('${items[index]}'),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
+              color: LightColors.kRed,
+              onPressed: () {
+                print("Pressed delete!"); //test if registered button press
+                setState((){
+                  //delete item
+                  items.remove('${items[index]}');
+                }
+                );
+              }
+            ),
+          );
+        }
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          addItem(context);
+        },
+        backgroundColor: LightColors.kGreen,
+        child: Icon(Icons.add),
+      ), // This trailing comma
     );
   }
+
+  void addItem(BuildContext context){
+
+
+    showDialog(child: new Dialog(
+      child: new Column(
+        children: <Widget> [
+          new TextField(
+            decoration: new InputDecoration(hintText: "Add Item"),
+            controller: _c,
+          ),
+          new FlatButton(
+              child: new Text("Add"),
+              onPressed: (){
+                setState(() {
+                  if(_c.text != "") {   //don't add empty items
+                    items.add(_c.text);
+                  }
+                  print(_c.text); //test to see if it was receiving input
+                  items.forEach((element) => print(element)); //test objects are being added to the list
+                  _c.text = ""; //reset the dialog box to be blank
+                });
+                Navigator.pop(context);
+              },
+          )
+        ]
+      )
+    ), context: context
+
+    );
+  }
+
 }

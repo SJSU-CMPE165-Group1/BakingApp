@@ -31,9 +31,9 @@ class RecipePageState extends State<RecipePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Suggested Recipes'), //widget.title
-          backgroundColor: LightColors.kDarkYellow,
+          backgroundColor: LightColors.kGreen,
         ),
-        backgroundColor: LightColors.kLightYellow,
+        backgroundColor: LightColors.kLightGreen,
         body:
         Center(
             child:FutureBuilder(

@@ -12,9 +12,9 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Search'), //widget.title
-          backgroundColor: LightColors.kDarkYellow,
+          backgroundColor: LightColors.kGreen,
         ),
-        backgroundColor: LightColors.kLightYellow,
+        backgroundColor: LightColors.kLightGreen,
         body:
         Center(
           child:Text(

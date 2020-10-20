@@ -7,7 +7,7 @@ class PantryPage extends StatefulWidget {
 }
 
 class _PantryPageState extends State<PantryPage> {
-  List<bool> bakingList = List.generate(3, (index) => false);
+  List<bool> bakingList = List.generate(4, (index) => false);
   List<bool> dairyList = List.generate(4, (index) => false);
 
   @override
@@ -15,84 +15,94 @@ class _PantryPageState extends State<PantryPage> {
     return Scaffold(
         appBar: AppBar(
           title: Text('BAKING BUDDY Pantry'), //widget.title
-          backgroundColor: LightColors.kDarkYellow,
+          backgroundColor: LightColors.kGreen,
         ),
-        backgroundColor: LightColors.kLightYellow,
+        backgroundColor: LightColors.kLightGreen,
         body:
-        Column (
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget> [
-            Text('Baking',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-                color: LightColors.kBlue,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column (
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget> [
+              Text('Dry Ingredients',
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
+                  color: LightColors.kBlue,
+                ),
               ),
-            ),
-            ToggleButtons(
-              children: [
-                Text('AP Flour'),
-                Text('Baking Soda'),
-                Text('Shortening'),
-              ],
-              isSelected: bakingList,
-              onPressed: (int i) {
-                setState(() {
-                  bakingList[i] = !bakingList[i];
-                });
-              },
-              fillColor: LightColors.kDarkYellow,
-              color: Colors.black54,
-              selectedColor: Colors.black87,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            Text('Dairy',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-                color: LightColors.kBlue,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ToggleButtons(
+                  children: [
+                    Text('  AP Flour  '),
+                    Text('  Baking Soda  '),
+                    Text('  Baking Powder  '),
+                    Text(' Sugar '),
+                  ],
+                  isSelected: bakingList,
+                  onPressed: (int i) {
+                    setState(() {
+                      bakingList[i] = !bakingList[i];
+                    });
+                  },
+                  fillColor: LightColors.kGreen,
+                  color: Colors.black54,
+                  selectedColor: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-            ),
-            ToggleButtons(
-              children: [
-                Text('Milk'),
-                Text('Condensed Milk'),
-                Text('Evaporated Milk'),
-                Text('Eggs'),
-              ],
-              isSelected: dairyList,
-              onPressed: (int i) {
-                setState(() {
-                  dairyList[i] = !dairyList[i];
-                });
-              },
-              fillColor: LightColors.kDarkYellow,
-              color: Colors.black54,
-              selectedColor: Colors.black87,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            Text('Fruits',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-                color: LightColors.kBlue,
+              Text('Wet Ingredients',
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
+                  color: LightColors.kBlue,
+                ),
               ),
-            ),
-            Text('Vegetables',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-                color: LightColors.kBlue,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ToggleButtons(
+                  children: [
+                    Text('Milk'),
+                    Text('Condensed Milk'),
+                    Text('Evaporated Milk'),
+                    Text('Eggs'),
+                  ],
+                  isSelected: dairyList,
+                  onPressed: (int i) {
+                    setState(() {
+                      dairyList[i] = !dairyList[i];
+                    });
+                  },
+                  fillColor: LightColors.kGreen,
+                  color: Colors.black54,
+                  selectedColor: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
-            ),
-            Text('Sweeteners',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-                color: LightColors.kBlue,
+              Text('Fruits',
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
+                  color: LightColors.kBlue,
+                ),
               ),
-            ),
-          ],
+              Text('Vegetables',
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
+                  color: LightColors.kBlue,
+                ),
+              ),
+              Text('Sweeteners',
+                style: TextStyle(
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold,
+                  color: LightColors.kBlue,
+                ),
+              ),
+            ],
+          ),
         )
     );
   }
