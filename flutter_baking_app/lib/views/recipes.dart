@@ -22,7 +22,7 @@ class RecipePageState extends State<RecipePage> {
 
   void updateSearch() {
     setState(() {
-      futureRecipes = RecipeAPI().fetchRecipesFromIngredients("sugar,eggs,flour", 1);
+      futureRecipes = RecipeAPI().fetchRecipesFromIngredients("eggs,flour, milk, bananas", 1);
     });
   }
 
@@ -30,7 +30,13 @@ class RecipePageState extends State<RecipePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Suggested Recipes'), //widget.title
+          title: Text('Suggested Recipes', style: TextStyle(fontFamily:'Poppins', fontSize: 25, color: Colors.white)), //widget.title
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              "images/BakingBuddy.png",
+            ),
+          ),
           backgroundColor: LightColors.kGreen,
         ),
         backgroundColor: LightColors.kLightGreen,

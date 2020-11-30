@@ -11,7 +11,13 @@ class _FavoritesPageState extends State<FavoritesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Favorited Recipes'), //widget.title
+          title: Text('Favorited Recipes',  style: TextStyle(fontFamily:'Poppins', fontSize: 25, color: Colors.white)), //widget.title
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              "images/BakingBuddy.png",
+            ),
+          ),
           backgroundColor: LightColors.kGreen,
         ),
         backgroundColor: LightColors.kLightGreen,

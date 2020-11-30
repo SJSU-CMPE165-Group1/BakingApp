@@ -11,7 +11,13 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Search'), //widget.title
+          title: Text('Search',  style: TextStyle(fontFamily:'Poppins', fontSize: 25, color: Colors.white)),
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(
+              "images/BakingBuddy.png",
+          ),
+          ),
           backgroundColor: LightColors.kGreen,
         ),
         backgroundColor: LightColors.kLightGreen,

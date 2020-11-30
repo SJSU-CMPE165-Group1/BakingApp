@@ -15,7 +15,13 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shopping List'), //widget.title
+        title: Text('Shopping List',  style: TextStyle(fontFamily:'Poppins', fontSize: 25, color: Colors.white)), //widget.title
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset(
+            "images/BakingBuddy.png",
+          ),
+        ),
         backgroundColor: LightColors.kGreen,
       ),
       backgroundColor: LightColors.kLightGreen,
@@ -56,7 +62,7 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
           addItem(context);
         },
         backgroundColor: LightColors.kGreen,
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color:Colors.white),
       ), // This trailing comma
     );
   }
@@ -95,7 +101,7 @@ class _ShoppingListPageState extends State<ShoppingListPage> {
             controller: _c,
           ),
           new FlatButton(
-              child: new Text("Add"),
+              child: new Text("Add", style: TextStyle(fontFamily:'Poppins',)),
               onPressed: (){
                 setState(() {
                   if(_c.text != "") {   //don't add empty items
